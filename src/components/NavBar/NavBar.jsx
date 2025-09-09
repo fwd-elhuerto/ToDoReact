@@ -34,17 +34,19 @@ const agregarTarea = async () => {
 
   return (
     <div>
-    
-    <div className='busqueda'>
-        <input type="text" value={Busqueda} placeholder='Filtrar por nombre' onChange={(e)=> setBusqueda(e.target.value)} />
-        <button /* onClick={buscar} */>Buscar</button><br /><br />
-    </div>
-        <label htmlFor="nueva">Agregar Pendiente</label>
-        <input type="text" placeholder='Nueva tarea' value={NuevaT} onChange={(e)=> setNuevaT(e.target.value)}/>
-        <button onClick={agregarTarea} >Agregar</button><br />
-        <button /* onClick={} */ className='completadas'>Tareas completadas</button>
+      <div className='all'>
+        <div className='busqueda'>
+            <input type="text" value={Busqueda} placeholder='Filtrar por nombre' onChange={(e)=> setBusqueda(e.target.value)} />
+            <button /* onClick={buscar} */>Buscar</button><br /><br />
+        </div>
 
-
+            <label htmlFor="nueva">Agregar Pendiente</label>
+            <input type="text" placeholder='Nueva tarea' value={NuevaT} onChange={(e)=> setNuevaT(e.target.value)}/>
+            <button onClick={agregarTarea} >Agregar</button><br />
+         <div className='adminTarea'>
+            <button /* onClick={} */ className='completadas'>Tareas completadas</button>
+        </div>
+      </div>
     </div>
   )
 }

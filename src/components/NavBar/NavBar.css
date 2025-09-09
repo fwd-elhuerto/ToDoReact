@@ -1,3 +1,9 @@
+.all{
+  background-color: rgb(124, 75, 118);
+  color: rgb(255, 255, 255);
+  gap: 5px;
+}
+
 .busqueda{
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -7,9 +13,19 @@
 }
 
 .completadas{
+    
     gap: 10px;
     padding: 10px;
     border-radius: 50%;
     width: 100px;
     height: 100px;
+    background-color: rgb(121, 116, 116);
+    color: rgb(255, 255, 255);
+    
+    border-inline-color: rgb(0, 0, 0);
+}
+
+.adminTarea{
+  display: flex;
+  justify-content: right;
 }

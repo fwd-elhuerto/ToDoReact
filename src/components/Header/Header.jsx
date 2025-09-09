@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useNavigate} from 'react-router-dom'
+import '../Header/Header.css'
 
 function Header() {
   const navegar = useNavigate();
@@ -10,10 +11,12 @@ function Header() {
 
   return (
     <div>
+
+      <div className='header'>
         <h2>TaskPlann</h2>
         <p>Sencillo, sin atrasos</p>
-        <button onClick={cerrar}>Cerrar sesion</button>
-
+        <button className='btnCS' onClick={cerrar}>Cerrar sesión</button>
+      </div>
 
 
     </div>

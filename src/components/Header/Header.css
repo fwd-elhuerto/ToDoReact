@@ -1,0 +1,12 @@
+.header{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: black;
+    color: white;
+}
+
+.btnCS{
+    background-color: transparent;
+    color: white;
+    border-inline-color: rgb(124, 75, 118);
+}

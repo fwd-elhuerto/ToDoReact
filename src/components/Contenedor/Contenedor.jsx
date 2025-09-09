@@ -27,10 +27,10 @@ function Contenedor() {
 
       },[])
 
-    const CompletarTarea = async (id) =>{
-       const tareaActualizada = { ...TareasM, estado: true }
-        await Services.putTask(tareaActualizada, TareasM.id)
-        setTareasM(TareasM.filter((t) => t.id !== id))
+    const CompletarTarea = async (TareasM) =>{
+       await Services.putTask({estado: true} , TareasM.id);
+       console.log(TareasM);
+       
     }
 
     const eliminarTarea = async (id) => {
@@ -51,7 +51,7 @@ function Contenedor() {
 
 
       const editarTarea = async (TareasM) => {
-         
+
         const nuevoContent = prompt("Digita el nuevo valor", TareasM.nombre)
         await Services.putTask({nombre: nuevoContent} , TareasM.id);
       }
@@ -64,12 +64,26 @@ function Contenedor() {
         <h1>Pendientes:</h1>
 
         <div className="lista-tareas">
-            {TareasM.map((tarea) => (
+            {TareasM.filter(t => !t.estado).map((tarea) => (
+
+                    <div key={tarea.id} className="tarea-card">
+                    <h3>{tarea.nombre} <input type="checkbox" onClick={() => CompletarTarea(tarea)}/></h3>
+                    <p>{tarea.fecha}</p>
+                    <button onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
+                    <button onClick={() => editarTarea(tarea)}>Editar</button>
+                    </div>
+            ))}
+            
+        </div>
+
+
+        <h1>Completadas:</h1>
+
+        <div className="lista-tareas">
+            {TareasM.filter(t => t.estado).map((tarea) => (
             <div key={tarea.id} className="tarea-card">
-            <h3>{tarea.nombre} <input type="checkbox" onClick={() => CompletarTarea(tarea.id)}/></h3>
+            <h3>{tarea.nombre} <input type="checkbox" onClick={() => CompletarTarea(tarea)}/></h3>
             <p>{tarea.fecha}</p>
-            <button onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
-            <button onClick={() => editarTarea(tarea)}>Editar</button>
             </div>
             ))}
         </div>
