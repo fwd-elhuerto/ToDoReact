@@ -1,53 +1,50 @@
-async function getMovie () {
+async function getTask () {
     
     try {
         
-        const response =await fetch("http://localhost:3001/movies",{
+        const response =await fetch("http://localhost:3001/tareas",{
         method:'GET',
         headers : {
             'Content-Type': 'application/json'
         }
         })
-        const movies = await response.json()
+        const tareas = await response.json()
         
-        return movies
+        return tareas
 
     } catch (error) {
-        console.error("Error al obtener las peliculas",error)
+        console.error("Error al obtener las tareas",error)
         throw error
     }
 }
-export{getMovie}
 
 
-
-async function postMovie (movie) {
+async function postTask (tarea) {
     
     try {
         
-        const response =await fetch("http://localhost:3001/movies",{
+        const response =await fetch("http://localhost:3001/tareas",{
         method:'POST',
         headers : {
             'Content-Type': 'application/json' },
-        body:JSON.stringify(movie)
+        body:JSON.stringify(tarea)
         })
-        const movies = await response.json()
+        const tareas = await response.json()
         
-        return movies
+        return tareas
 
     } catch (error) {
-        console.error("Error al guardar las peliculas",error)
+        console.error("Error al guardar las tareas",error)
         throw error
     }
 }
-export{postMovie}
 
 
-async function deleteMovie (id) {
+async function deleteTask (id) {
     
     try {
         
-        const response =await fetch("http://localhost:3001/movies/"+ id,{
+        const response =await fetch("http://localhost:3001/tareas/"+ id,{
         method:'DELETE',
         headers : {
             'Content-Type': 'application/json'
@@ -58,27 +55,27 @@ async function deleteMovie (id) {
         return products
  */
     } catch (error) {
-        console.error("Error al eliminar las peliculas",error)
+        console.error("Error al eliminar las tareas",error)
         throw error
     }
 }
-export{deleteMovie}
-
-async function putMovie (movie,id) {
+async function putTask (tarea,id) {
     
     try {
         
-        const response =await fetch("http://localhost:3001/movies/"+ id,{
-        method:'PUT',
+        const response =await fetch("http://localhost:3001/tareas/"+ id,{
+        method:'PATCH',
         headers : {
             'Content-Type': 'application/json'
         },
-        body:JSON.stringify(movie)
-        })
+        body:JSON.stringify(tarea)
+        });
+        const tareaActualizada = await response.json();
+        return tareaActualizada;
         
     } catch (error) {
-        console.error("Error al actualizar las peliculas",error)
+        console.error("Error al actualizar las tareas",error)
         throw error
     }
 }
-export{putMovie}
+export default {getTask, postTask, deleteTask, putTask} 

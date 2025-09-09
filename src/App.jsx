@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import Routing from './routes/Routing'
 
 
 function App() {
@@ -6,6 +8,8 @@ function App() {
   return (
     <>
       <div>
+
+        <Routing />
       </div>
     
     </>
