@@ -1,11 +1,26 @@
 import React from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import '../Header/Header.css'
+import Swal from 'sweetalert2';
 
 function Header() {
   const navegar = useNavigate();
-  const cerrar = () => {
-     navegar("/Login")
+
+
+  const cerrar = async () => {
+    const result = await Swal.fire({
+            title: "¿Seguro?",
+            text: "¿Volver a inicio de sesión?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí, salir",
+            cancelButtonText: "Cancelar"
+            });
+     if (result.isConfirmed) {
+             navegar("/Login")   
+            }
+
+     
   }
 
 

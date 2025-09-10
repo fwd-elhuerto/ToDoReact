@@ -4,13 +4,15 @@ import { Link, useNavigate} from 'react-router-dom'
 import Services from '../../services/Services';
 import '../NavBar/NavBar.css'
 import Swal from 'sweetalert2';
+import Contenedor from '../Contenedor/Contenedor';
 
-function NavBar() {
+
+function NavBar({agregarTarea}) {
 const [Busqueda, setBusqueda]=useState("");
 const [NuevaT, setNuevaT]=useState("");
 
 
-const agregarTarea = async () => {
+const agregarTareaPro = async () => {
      const fechaActual = new Date();
 
     if (NuevaT.trim()) {
@@ -19,19 +21,23 @@ const agregarTarea = async () => {
         estado: false,
         fecha: fechaActual.toLocaleString()
         }
-        const tareaGuardada =await Services.postTask(task)
-        console.log(tareaGuardada);
+        console.log(task);
+        
+       const savedTask = await Services.postTask(task)
         setNuevaT("");
         Swal.fire("¡Listo!", "Tarea agregada.", "success");
+        agregarTarea(savedTask)
     }
-    
+}
+
+const cambiarLista = () => {
 
 }
 
 
 
 
-
+//-----------------------------------------------------------------------------------------------------------------------------------------
   return (
     <div>
       <div className='all'>
@@ -42,9 +48,9 @@ const agregarTarea = async () => {
 
             <label htmlFor="nueva">Agregar Pendiente</label>
             <input type="text" placeholder='Nueva tarea' value={NuevaT} onChange={(e)=> setNuevaT(e.target.value)}/>
-            <button onClick={agregarTarea} >Agregar</button><br />
+            <button onClick={agregarTareaPro} >Agregar</button><br />
          <div className='adminTarea'>
-            <button /* onClick={} */ className='completadas'>Tareas completadas</button>
+            <button onClick={cambiarLista} className='completadas'>Tareas completadas</button>
         </div>
       </div>
     </div>

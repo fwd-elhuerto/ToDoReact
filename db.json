@@ -1,16 +1,16 @@
 {
   "tareas": [
     {
-      "id": "80db",
-      "nombre": "holaaa",
-      "estado": true,
-      "fecha": "9/9/2025, 8:47:13 a. m."
+      "id": "40e8",
+      "nombre": "bdbjbsjkskjsjkbdg",
+      "estado": false,
+      "fecha": "10/9/2025, 3:16:31 p. m."
     },
     {
-      "id": "6c8e",
-      "nombre": "caleb",
+      "id": "5e44",
+      "nombre": "investigar props",
       "estado": true,
-      "fecha": "9/9/2025, 1:40:28 p. m."
+      "fecha": "10/9/2025, 3:17:05 p. m."
     }
   ]
 }

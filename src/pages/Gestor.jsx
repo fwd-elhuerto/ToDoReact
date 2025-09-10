@@ -1,15 +1,13 @@
 import React from 'react'
-import NavBar from '../components/NavBar/NavBar'
-import Contenedor from '../components/Contenedor/Contenedor'
 import Header from '../components/Header/Header'
+import AdminTask from '../components/Contenedor/AdminTask/AdminTask'
 
 function Gestor() {
   return (
     <div>
 
         <Header />
-        <NavBar />
-        <Contenedor />
+        <AdminTask />
     </div>
   )
 }

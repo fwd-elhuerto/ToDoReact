@@ -3,30 +3,13 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import Services from '../../services/Services';
 import Swal from 'sweetalert2';
+import '../Contenedor/Contenedor.css'
 
 
 
-function Contenedor() {
-    const [TareasM, setTareasM] = useState([])
+function Contenedor({TareasM, setTareasM}) {
+    console.log(TareasM);
     
-    useEffect(() => {
-
-      const fecthTareas = async () =>{
-
-        try {
-          const tareasObtenidas = await Services.getTask()
-          setTareasM(tareasObtenidas)
-
-        } catch (error) {
-          console.error("Error al traer las tareas del servicio", error)
-        }}
-      
-      fecthTareas()  
-      
-
-
-      },[])
-
     const CompletarTarea = async (tarea) =>{
         const tareaActualizada = { ...tarea, estado: true }
         await Services.putTask(tareaActualizada, tarea.id)
@@ -60,18 +43,21 @@ function Contenedor() {
 
       const editarTarea = async (tarea) => {
         const nuevoContent = prompt("Digita el nuevo valor", TareasM.nombre)
-        if (nuevoContent.trim() !== "") {
+        if (nuevoContent && nuevoContent.trim() !== "") {
             const tareaActualizada = { ...tarea, nombre: nuevoContent }
             await Services.putTask(tareaActualizada, tarea.id)
             setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t))
+        } else {
+            Swal.fire("Error al guardar", "Ingresa un dato valido.", "error");
         }
       }
 
 
 //-----------------------------------------------------------------------------------------------------------------
   return (
-    <div>
+    <div className='allC'>
         
+        <div className='pendientes'>
         <h1>Pendientes:</h1>
 
         <div className="lista-tareas">
@@ -86,8 +72,9 @@ function Contenedor() {
             ))}
             
         </div>
+        </div>
 
-
+        <div className='completas'> {/* este contendor tiene display none en el css */}
         <h1>Completadas:</h1>
 
         <div className="lista-tareas">
@@ -97,6 +84,7 @@ function Contenedor() {
             <p>{tarea.fecha}</p>
             </div>
             ))}
+        </div>
         </div>
 
     </div>

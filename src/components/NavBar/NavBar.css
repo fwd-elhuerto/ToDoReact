@@ -21,6 +21,7 @@
     height: 100px;
     background-color: rgb(121, 116, 116);
     color: rgb(255, 255, 255);
+    cursor: pointer;
     
     border-inline-color: rgb(0, 0, 0);
 }
