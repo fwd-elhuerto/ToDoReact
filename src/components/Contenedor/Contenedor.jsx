@@ -27,10 +27,18 @@ function Contenedor() {
 
       },[])
 
-    const CompletarTarea = async (TareasM) =>{
-       await Services.putTask({estado: true} , TareasM.id);
-       console.log(TareasM);
-       
+    const CompletarTarea = async (tarea) =>{
+        const tareaActualizada = { ...tarea, estado: true }
+        await Services.putTask(tareaActualizada, tarea.id)
+        setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t))
+        Swal.fire("Tarea completada!", "Puedes volverla a activar en el historial de completadas.", "success");
+        console.log(TareasM);
+    }
+
+    const activarTarea = async (tarea) => {
+        const tareaActualizada = { ...tarea, estado: false }
+        await Services.putTask(tareaActualizada, tarea.id)
+        setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t))
     }
 
     const eliminarTarea = async (id) => {
@@ -50,10 +58,13 @@ function Contenedor() {
       }
 
 
-      const editarTarea = async (TareasM) => {
-
+      const editarTarea = async (tarea) => {
         const nuevoContent = prompt("Digita el nuevo valor", TareasM.nombre)
-        await Services.putTask({nombre: nuevoContent} , TareasM.id);
+        if (nuevoContent.trim() !== "") {
+            const tareaActualizada = { ...tarea, nombre: nuevoContent }
+            await Services.putTask(tareaActualizada, tarea.id)
+            setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t))
+        }
       }
 
 
@@ -82,7 +93,7 @@ function Contenedor() {
         <div className="lista-tareas">
             {TareasM.filter(t => t.estado).map((tarea) => (
             <div key={tarea.id} className="tarea-card">
-            <h3>{tarea.nombre} <input type="checkbox" onClick={() => CompletarTarea(tarea)}/></h3>
+            <h3>{tarea.nombre} <input type="checkbox" defaultChecked={true} onClick={() => activarTarea(tarea)}/></h3>
             <p>{tarea.fecha}</p>
             </div>
             ))}
