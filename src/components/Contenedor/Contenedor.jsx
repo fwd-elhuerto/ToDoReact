@@ -8,7 +8,7 @@ import '../Contenedor/Contenedor.css'
 
 
 function Contenedor({TareasM, setTareasM, mostrarPendiente}) {
-    console.log(TareasM);
+    
 
     
 
@@ -69,7 +69,9 @@ function Contenedor({TareasM, setTareasM, mostrarPendiente}) {
         <h1> {mostrarPendiente ? "Pendientes:" : "Completadas:"} </h1>
 
         <div className="lista-tareas">
-            {tareasFiltradas.map((tarea) => (
+            {tareasFiltradas.length === 0
+            ? <p>No hay tareas pendientes</p>
+            : tareasFiltradas.map((tarea) => (
 
                     <div key={tarea.id} className="tarea-card">
                     

@@ -44,3 +44,12 @@
   background-color: #3498db;
   color: white;
 }
+
+@media screen and (max-width: 768px) {
+    .lista-tareas {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+}

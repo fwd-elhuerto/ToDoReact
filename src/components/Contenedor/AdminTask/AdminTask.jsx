@@ -27,7 +27,7 @@ function AdminTask() {
   return (
     <div>
 
-        <NavBar agregarTarea={agregarTarea} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} />
+        <NavBar agregarTarea={agregarTarea} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} TareasM={TareasM} />
         <Contenedor TareasM={TareasM} setTareasM={setTareasM} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} />
 
     </div>

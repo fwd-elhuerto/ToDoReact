@@ -4,14 +4,19 @@ import { Link, useNavigate} from 'react-router-dom'
 import Services from '../../services/Services';
 import '../NavBar/NavBar.css'
 import Swal from 'sweetalert2';
-import Contenedor from '../Contenedor/Contenedor';
 
 
-function NavBar({agregarTarea, mostrarPendiente, setmostrarPendiente}) {
+
+function NavBar({agregarTarea, mostrarPendiente, setmostrarPendiente, TareasM}) {
 const [Busqueda, setBusqueda]=useState("");
 const [NuevaT, setNuevaT]=useState("");
 const timeoutRef = useRef(null);
 
+const enCola = TareasM.filter(t => !t.estado).length;
+const terminadas = TareasM.filter(t => t.estado).length;
+console.log(terminadas);
+
+  
 
 const agregarTareaPro = async () => {
      const fechaActual = new Date();
@@ -28,6 +33,8 @@ const agregarTareaPro = async () => {
         setNuevaT("");
         Swal.fire("¡Listo!", "Tarea agregada.", "success");
         agregarTarea(savedTask)
+    } else{
+        Swal.fire("Error al guardar", "Ingrese un valor valido", "error");
     }
 }
 
@@ -35,8 +42,10 @@ const agregarTareaPro = async () => {
 
 const cambiarLista = () => {
    timeoutRef.current =setTimeout(() => {
-     setmostrarPendiente(!mostrarPendiente);
-    }, 1000); 
+      document.startViewTransition(() => {
+        setmostrarPendiente(!mostrarPendiente);
+      });
+    }, 300); 
 }
 const soltarMouse =() => {
   clearTimeout(timeoutRef.current)
@@ -65,7 +74,7 @@ const soltarMouse =() => {
             />
             <button onClick={agregarTareaPro} >Agregar</button><br />
          <div className='adminTarea'>
-            <button onMouseDown={cambiarLista} onMouseUp={soltarMouse} onMouseLeave={soltarMouse} className='completadas'>{mostrarPendiente ? 'Tareas completadas' : 'Tareas Pendientes'}</button>
+            <button onMouseDown={cambiarLista} onMouseUp={soltarMouse} onMouseLeave={soltarMouse} className='completadas'>{mostrarPendiente ? `Tareas completadas ${terminadas}` : `Tareas pendientes ${enCola}`}</button>
         </div>
       </div>
     </div>
