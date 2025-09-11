@@ -8,6 +8,7 @@ import Services from '../../../services/Services';
 function AdminTask() {
 
   const [TareasM, setTareasM] = useState([])
+  const [mostrarPendiente, setmostrarPendiente] = useState(true);
 
   useEffect(() => {
         const pedirInfo = async () => {
@@ -26,8 +27,8 @@ function AdminTask() {
   return (
     <div>
 
-        <NavBar agregarTarea={agregarTarea}/>
-        <Contenedor TareasM={TareasM} setTareasM={setTareasM}/>
+        <NavBar agregarTarea={agregarTarea} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} />
+        <Contenedor TareasM={TareasM} setTareasM={setTareasM} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} />
 
     </div>
   )

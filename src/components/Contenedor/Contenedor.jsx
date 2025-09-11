@@ -7,8 +7,16 @@ import '../Contenedor/Contenedor.css'
 
 
 
-function Contenedor({TareasM, setTareasM}) {
+function Contenedor({TareasM, setTareasM, mostrarPendiente}) {
     console.log(TareasM);
+
+    
+
+    const tareasFiltradas = mostrarPendiente
+       ? TareasM.filter(t => !t.estado)
+       : TareasM.filter(t => t.estado)
+
+    
     
     const CompletarTarea = async (tarea) =>{
         const tareaActualizada = { ...tarea, estado: true }
@@ -42,8 +50,8 @@ function Contenedor({TareasM, setTareasM}) {
 
 
       const editarTarea = async (tarea) => {
-        const nuevoContent = prompt("Digita el nuevo valor", TareasM.nombre)
-        if (nuevoContent && nuevoContent.trim() !== "") {
+        const nuevoContent = prompt("Digita el nuevo valor", tarea.nombre)
+        if (nuevoContent.trim() !== "") {
             const tareaActualizada = { ...tarea, nombre: nuevoContent }
             await Services.putTask(tareaActualizada, tarea.id)
             setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t))
@@ -58,32 +66,30 @@ function Contenedor({TareasM, setTareasM}) {
     <div className='allC'>
         
         <div className='pendientes'>
-        <h1>Pendientes:</h1>
+        <h1> {mostrarPendiente ? "Pendientes:" : "Completadas:"} </h1>
 
         <div className="lista-tareas">
-            {TareasM.filter(t => !t.estado).map((tarea) => (
+            {tareasFiltradas.map((tarea) => (
 
                     <div key={tarea.id} className="tarea-card">
-                    <h3>{tarea.nombre} <input type="checkbox" onClick={() => CompletarTarea(tarea)}/></h3>
+                    
+                    <h3 style={{ textDecoration: mostrarPendiente ? "none" : "line-through" }}>
+                        {tarea.nombre}
+                        <input type="checkbox" checked={tarea.estado} onChange={() => tarea.estado ? activarTarea(tarea) : CompletarTarea(tarea)}/>
+                    </h3>
                     <p>{tarea.fecha}</p>
-                    <button onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
-                    <button onClick={() => editarTarea(tarea)}>Editar</button>
+                    {mostrarPendiente 
+                        ? (
+                            <>
+                                <button onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
+                                <button onClick={() => editarTarea(tarea)}>Editar</button>
+                            </>
+                        ) 
+                        : null
+                    }
                     </div>
             ))}
             
-        </div>
-        </div>
-
-        <div className='completas'> {/* este contendor tiene display none en el css */}
-        <h1>Completadas:</h1>
-
-        <div className="lista-tareas">
-            {TareasM.filter(t => t.estado).map((tarea) => (
-            <div key={tarea.id} className="tarea-card">
-            <h3>{tarea.nombre} <input type="checkbox" defaultChecked={true} onClick={() => activarTarea(tarea)}/></h3>
-            <p>{tarea.fecha}</p>
-            </div>
-            ))}
         </div>
         </div>
 

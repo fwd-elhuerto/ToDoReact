@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import Services from '../../services/Services';
 import '../NavBar/NavBar.css'
@@ -7,9 +7,10 @@ import Swal from 'sweetalert2';
 import Contenedor from '../Contenedor/Contenedor';
 
 
-function NavBar({agregarTarea}) {
+function NavBar({agregarTarea, mostrarPendiente, setmostrarPendiente}) {
 const [Busqueda, setBusqueda]=useState("");
 const [NuevaT, setNuevaT]=useState("");
+const timeoutRef = useRef(null);
 
 
 const agregarTareaPro = async () => {
@@ -30,8 +31,15 @@ const agregarTareaPro = async () => {
     }
 }
 
-const cambiarLista = () => {
 
+
+const cambiarLista = () => {
+   timeoutRef.current =setTimeout(() => {
+     setmostrarPendiente(!mostrarPendiente);
+    }, 1000); 
+}
+const soltarMouse =() => {
+  clearTimeout(timeoutRef.current)
 }
 
 
@@ -47,10 +55,17 @@ const cambiarLista = () => {
         </div>
 
             <label htmlFor="nueva">Agregar Pendiente</label>
-            <input type="text" placeholder='Nueva tarea' value={NuevaT} onChange={(e)=> setNuevaT(e.target.value)}/>
+            <input type="text" placeholder='Nueva tarea' value={NuevaT} 
+            onChange={(e)=> setNuevaT(e.target.value)}
+            onKeyDown={(e)=>{
+              if (e.key === "Enter") {
+                agregarTareaPro()
+              }
+            } }
+            />
             <button onClick={agregarTareaPro} >Agregar</button><br />
          <div className='adminTarea'>
-            <button onClick={cambiarLista} className='completadas'>Tareas completadas</button>
+            <button onMouseDown={cambiarLista} onMouseUp={soltarMouse} onMouseLeave={soltarMouse} className='completadas'>{mostrarPendiente ? 'Tareas completadas' : 'Tareas Pendientes'}</button>
         </div>
       </div>
     </div>
