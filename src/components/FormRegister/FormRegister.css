@@ -1,0 +1,18 @@
+.formRStyle{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+
+.register{
+   background-color: rgb(124, 75, 118);
+   color: rgb(255, 255, 255);
+   gap: 5px;
+   
+}
+
+.btn{
+    text-align: center;
+    background-color: rgb(184, 172, 172);
+    background-origin: padding-box;
+}

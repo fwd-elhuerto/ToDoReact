@@ -9,6 +9,8 @@ function AdminTask() {
 
   const [TareasM, setTareasM] = useState([])
   const [mostrarPendiente, setmostrarPendiente] = useState(true);
+  const usuarioLogueado = JSON.parse(sessionStorage.getItem("usuarioLogueado"))
+
 
   useEffect(() => {
         const pedirInfo = async () => {
@@ -27,8 +29,8 @@ function AdminTask() {
   return (
     <div>
 
-        <NavBar agregarTarea={agregarTarea} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} TareasM={TareasM} />
-        <Contenedor TareasM={TareasM} setTareasM={setTareasM} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} />
+        <NavBar agregarTarea={agregarTarea} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} TareasM={TareasM} usuarioLogueado={usuarioLogueado} />
+        <Contenedor TareasM={TareasM} setTareasM={setTareasM} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} usuarioLogueado={usuarioLogueado} />
 
     </div>
   )

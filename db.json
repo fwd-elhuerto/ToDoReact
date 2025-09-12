@@ -1,28 +1,32 @@
 {
   "tareas": [
     {
-      "id": "9dce",
-      "nombre": "bnfme",
-      "estado": true,
-      "fecha": "11/9/2025, 10:09:06 a. m."
+      "id": "b1f2",
+      "nombre": "dejar de usar props",
+      "estado": false,
+      "fecha": "12/9/2025, 3:28:19 p. m.",
+      "usuario": "caleb"
     },
     {
-      "id": "6ecc",
-      "nombre": "vxxnxnn",
-      "estado": true,
-      "fecha": "11/9/2025, 10:09:15 a. m."
+      "id": "df8e",
+      "nombre": "holaaaa",
+      "estado": false,
+      "fecha": "12/9/2025, 3:32:23 p. m.",
+      "usuario": "fio"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "1c34",
+      "Nombre": "caleb",
+      "Email": "caleb@gmail.com",
+      "Password": "123456789"
     },
     {
-      "id": "ee8b",
-      "nombre": "gsh",
-      "estado": true,
-      "fecha": "11/9/2025, 10:09:20 a. m."
-    },
-    {
-      "id": "afa2",
-      "nombre": "fjef",
-      "estado": true,
-      "fecha": "11/9/2025, 10:09:24 a. m."
+      "id": "88a1",
+      "Nombre": "fio",
+      "Email": "fio@gmail.com",
+      "Password": "123456789"
     }
   ]
 }

@@ -7,14 +7,14 @@ import '../Contenedor/Contenedor.css'
 
 
 
-function Contenedor({TareasM, setTareasM, mostrarPendiente}) {
+function Contenedor({TareasM, setTareasM, mostrarPendiente, usuarioLogueado}) {
     
 
     
-
+    
     const tareasFiltradas = mostrarPendiente
-       ? TareasM.filter(t => !t.estado)
-       : TareasM.filter(t => t.estado)
+       ? TareasM.filter(t => !t.estado && t.usuario === usuarioLogueado.Nombre)
+       : TareasM.filter(t => t.estado && t.usuario === usuarioLogueado.Nombre)
 
     
     
@@ -51,7 +51,7 @@ function Contenedor({TareasM, setTareasM, mostrarPendiente}) {
 
       const editarTarea = async (tarea) => {
         const nuevoContent = prompt("Digita el nuevo valor", tarea.nombre)
-        if (nuevoContent.trim() !== "") {
+        if (!nuevoContent.trim()) {
             const tareaActualizada = { ...tarea, nombre: nuevoContent }
             await Services.putTask(tareaActualizada, tarea.id)
             setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t))

@@ -7,14 +7,16 @@ import Swal from 'sweetalert2';
 
 
 
-function NavBar({agregarTarea, mostrarPendiente, setmostrarPendiente, TareasM}) {
+function NavBar({agregarTarea, mostrarPendiente, setmostrarPendiente, TareasM, usuarioLogueado}) {
 const [Busqueda, setBusqueda]=useState("");
 const [NuevaT, setNuevaT]=useState("");
 const timeoutRef = useRef(null);
 
+const usuarioEnSesion = usuarioLogueado;
+
 const enCola = TareasM.filter(t => !t.estado).length;
 const terminadas = TareasM.filter(t => t.estado).length;
-console.log(terminadas);
+
 
   
 
@@ -25,9 +27,10 @@ const agregarTareaPro = async () => {
         const task ={
         nombre: NuevaT,
         estado: false,
-        fecha: fechaActual.toLocaleString()
+        fecha: fechaActual.toLocaleString(),
+        usuario: usuarioEnSesion.Nombre
         }
-        console.log(task);
+        
         
        const savedTask = await Services.postTask(task)
         setNuevaT("");
