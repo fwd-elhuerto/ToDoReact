@@ -9,6 +9,7 @@ function AdminTask() {
 
   const [TareasM, setTareasM] = useState([])
   const [mostrarPendiente, setmostrarPendiente] = useState(true);
+  const [Busqueda, setBusqueda] = useState("");
   const usuarioLogueado = JSON.parse(sessionStorage.getItem("usuarioLogueado"))
 
 
@@ -29,8 +30,8 @@ function AdminTask() {
   return (
     <div>
 
-        <NavBar agregarTarea={agregarTarea} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} TareasM={TareasM} usuarioLogueado={usuarioLogueado} />
-        <Contenedor TareasM={TareasM} setTareasM={setTareasM} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} usuarioLogueado={usuarioLogueado} />
+        <NavBar agregarTarea={agregarTarea} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} TareasM={TareasM} usuarioLogueado={usuarioLogueado} setBusqueda={setBusqueda} />
+        <Contenedor TareasM={TareasM} setTareasM={setTareasM} mostrarPendiente={mostrarPendiente} setmostrarPendiente={setmostrarPendiente} usuarioLogueado={usuarioLogueado} Busqueda={Busqueda} />
 
     </div>
   )

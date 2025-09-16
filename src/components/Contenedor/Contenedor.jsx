@@ -7,15 +7,12 @@ import '../Contenedor/Contenedor.css'
 
 
 
-function Contenedor({TareasM, setTareasM, mostrarPendiente, usuarioLogueado}) {
+function Contenedor({TareasM, setTareasM, mostrarPendiente, usuarioLogueado, Busqueda}) {
     
-
-    
-    
-    const tareasFiltradas = mostrarPendiente
-       ? TareasM.filter(t => !t.estado && t.usuario === usuarioLogueado.Nombre)
-       : TareasM.filter(t => t.estado && t.usuario === usuarioLogueado.Nombre)
-
+    const tareasFiltradas = TareasM
+    .filter(t => t.usuario === usuarioLogueado.Nombre)
+    .filter(t => mostrarPendiente ? !t.estado : t.estado)
+    .filter(t => t.nombre.toLowerCase().includes(Busqueda.toLowerCase()));
     
     
     const CompletarTarea = async (tarea) =>{

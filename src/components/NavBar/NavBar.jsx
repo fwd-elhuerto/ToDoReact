@@ -7,8 +7,7 @@ import Swal from 'sweetalert2';
 
 
 
-function NavBar({agregarTarea, mostrarPendiente, setmostrarPendiente, TareasM, usuarioLogueado}) {
-const [Busqueda, setBusqueda]=useState("");
+function NavBar({agregarTarea, mostrarPendiente, setmostrarPendiente, TareasM, usuarioLogueado, setBusqueda}) {
 const [NuevaT, setNuevaT]=useState("");
 const timeoutRef = useRef(null);
 
@@ -62,8 +61,7 @@ const soltarMouse =() => {
     <div>
       <div className='all'>
         <div className='busqueda'>
-            <input type="text" value={Busqueda} placeholder='Filtrar por nombre' onChange={(e)=> setBusqueda(e.target.value)} />
-            <button /* onClick={buscar} */>Buscar</button><br /><br />
+            <input type="text" placeholder='Filtrar por nombre' onChange={(e) => setBusqueda(e.target.value)} />
         </div>
 
             <label htmlFor="nueva">Agregar Pendiente</label>
