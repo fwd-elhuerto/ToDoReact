@@ -53,6 +53,7 @@ function FormLogin() {
              <button onClick={logIn} className='btn'>Ingresar</button>
         </div>
 
+           No tiene cuenta? <Link to ="/Register" className='link'>Registrarse</Link>
            
 
     </div>

@@ -2,7 +2,7 @@
   "tareas": [
     {
       "id": "b1f2",
-      "nombre": "dejar de usar props",
+      "nombre": "dejar de usar",
       "estado": false,
       "fecha": "12/9/2025, 3:28:19 p. m.",
       "usuario": "caleb"
@@ -13,6 +13,55 @@
       "estado": false,
       "fecha": "12/9/2025, 3:32:23 p. m.",
       "usuario": "fio"
+    },
+    {
+      "id": "7973",
+      "nombre": "vale",
+      "estado": false,
+      "fecha": "15/9/2025, 5:52:33 p. m.",
+      "usuario": "fio"
+    },
+    {
+      "id": "479f",
+      "nombre": "rjetjtkr",
+      "estado": false,
+      "fecha": "15/9/2025, 9:13:38 p. m.",
+      "usuario": "caleb"
+    },
+    {
+      "id": "6770",
+      "nombre": "uetu",
+      "estado": false,
+      "fecha": "15/9/2025, 9:13:41 p. m.",
+      "usuario": "caleb"
+    },
+    {
+      "id": "0a37",
+      "nombre": "yitiet",
+      "estado": false,
+      "fecha": "15/9/2025, 9:13:44 p. m.",
+      "usuario": "caleb"
+    },
+    {
+      "id": "7db9",
+      "nombre": "dtyi4t",
+      "estado": false,
+      "fecha": "15/9/2025, 9:13:46 p. m.",
+      "usuario": "caleb"
+    },
+    {
+      "id": "58f3",
+      "nombre": "yytjryk",
+      "estado": false,
+      "fecha": "15/9/2025, 9:13:49 p. m.",
+      "usuario": "caleb"
+    },
+    {
+      "id": "b452",
+      "nombre": "yukykyrky",
+      "estado": false,
+      "fecha": "15/9/2025, 9:13:52 p. m.",
+      "usuario": "caleb"
     }
   ],
   "usuarios": [
@@ -27,6 +76,18 @@
       "Nombre": "fio",
       "Email": "fio@gmail.com",
       "Password": "123456789"
+    },
+    {
+      "id": "d30e",
+      "Nombre": "cale",
+      "Email": "cal@gmail.com",
+      "Password": "123456789"
+    },
+    {
+      "id": "edb5",
+      "Nombre": "nyzeth castillo",
+      "Email": "nyzethcastillo11@gmail.com",
+      "Password": "Merequetengue"
     }
   ]
 }

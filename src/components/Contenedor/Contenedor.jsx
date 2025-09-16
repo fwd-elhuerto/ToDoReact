@@ -51,7 +51,7 @@ function Contenedor({TareasM, setTareasM, mostrarPendiente, usuarioLogueado}) {
 
       const editarTarea = async (tarea) => {
         const nuevoContent = prompt("Digita el nuevo valor", tarea.nombre)
-        if (!nuevoContent.trim()) {
+        if (nuevoContent.trim()) {
             const tareaActualizada = { ...tarea, nombre: nuevoContent }
             await Services.putTask(tareaActualizada, tarea.id)
             setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t))
@@ -70,12 +70,12 @@ function Contenedor({TareasM, setTareasM, mostrarPendiente, usuarioLogueado}) {
 
         <div className="lista-tareas">
             {tareasFiltradas.length === 0
-            ? <p>No hay tareas pendientes</p>
+            ? <p>No hay tareas disponibles</p>
             : tareasFiltradas.map((tarea) => (
 
                     <div key={tarea.id} className="tarea-card">
                     
-                    <h3 style={{ textDecoration: mostrarPendiente ? "none" : "line-through" }}>
+                    <h3 className={tarea.estado ? "tarea-completada" : ""}>
                         {tarea.nombre}
                         <input type="checkbox" checked={tarea.estado} onChange={() => tarea.estado ? activarTarea(tarea) : CompletarTarea(tarea)}/>
                     </h3>

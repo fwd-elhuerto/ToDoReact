@@ -14,8 +14,8 @@ const timeoutRef = useRef(null);
 
 const usuarioEnSesion = usuarioLogueado;
 
-const enCola = TareasM.filter(t => !t.estado).length;
-const terminadas = TareasM.filter(t => t.estado).length;
+const enCola = TareasM.filter(t => !t.estado && t.usuario === usuarioLogueado.Nombre).length;
+const terminadas = TareasM.filter(t => t.estado && t.usuario === usuarioLogueado.Nombre).length;
 
 
   
@@ -48,7 +48,7 @@ const cambiarLista = () => {
       document.startViewTransition(() => {
         setmostrarPendiente(!mostrarPendiente);
       });
-    }, 300); 
+    }, 200); 
 }
 const soltarMouse =() => {
   clearTimeout(timeoutRef.current)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import "../FormRegister/FormRegister.css"
 import ServicesUser from '../../services/ServicesUser'
@@ -14,20 +14,37 @@ function FormRegister() {
     const [Password, setPassword]=useState("")
     const datosUser = {Nombre, Email, Password}
     const [Password2, setPassword2]=useState("")
+    const [Users, setUsers] = useState([])
 
     const navegar = useNavigate()
-    
+
+    useEffect(() => {
+        const pedirUser = async () => {
+          const datosU = await ServicesUser.getUsuarios()
+          setUsers(datosU) 
+        }
+        pedirUser()
+    },[])
+
+
+    const usuarioExistente = Users.find(u => u.Nombre === Nombre && u.Email === Email);
 
     const CargarDatos = async () => {
         console.log(Nombre,Email,Password);
-        if (!Nombre.trim() || !Email.trim() || Password.length < 8 || Password != Password2) {
-            Swal.fire("Error al guardar", "Llene todos los campos solicitados, las contraseñas deben ser mayor a 8 caracteres y deben coincidir", "error");
-            return;
-        }
-            await Swal.fire('Hecho', 'El usuario se ha resgistrado correctamente', 'success');
-            const registrar = await ServicesUser.postUsuarios(datosUser)
-            navegar("/Login"); 
-    }
+        if (!usuarioExistente) {
+          
+       
+          if (!Nombre.trim() || !Email.trim() || Password.length < 8 || Password != Password2) {
+              Swal.fire("Error al guardar", "Llene todos los campos solicitados, las contraseñas deben ser mayor a 8 caracteres y deben coincidir", "error");
+              return;
+          }
+              await Swal.fire('Hecho', 'El usuario se ha resgistrado correctamente', 'success');
+              const registrar = await ServicesUser.postUsuarios(datosUser)
+              navegar("/Login"); 
+         } else{
+            await Swal.fire('El usuario ya existe', 'El usuario o correo esta ocupado, por favor use otro.', 'error');
+         }
+          }
 
 
   return (
@@ -55,7 +72,7 @@ function FormRegister() {
      
        
 
-        Ya tiene una cuenta? <Link to ="/Login">Iniciar Sesión</Link> 
+        Ya tiene una cuenta? <Link to ="/Login" className='link'>Iniciar Sesión</Link> 
 
 
 
