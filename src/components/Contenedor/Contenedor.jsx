@@ -47,16 +47,28 @@ function Contenedor({TareasM, setTareasM, mostrarPendiente, usuarioLogueado, Bus
 
 
       const editarTarea = async (tarea) => {
-        const nuevoContent = prompt("Digita el nuevo valor", tarea.nombre)
-        if (nuevoContent.trim()) {
-            const tareaActualizada = { ...tarea, nombre: nuevoContent }
-            await Services.putTask(tareaActualizada, tarea.id)
-            setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t))
-        } else {
-            Swal.fire("Error al guardar", "Ingresa un dato valido.", "error");
-        }
+  const { value: nuevoContent } = await Swal.fire({
+    title: "Editar tarea",
+    input: "text",
+    inputLabel: "Nuevo nombre de la tarea",
+    inputValue: tarea.nombre,
+    showCancelButton: true,
+    confirmButtonText: "Guardar",
+    cancelButtonText: "Cancelar",
+    inputValidator: (value) => {
+      if (!value.trim()) {
+        Swal.fire("Error al guardar", "Ingresa un dato valido.", "error");
       }
+    }
+  });
 
+  if (nuevoContent) {
+    const tareaActualizada = { ...tarea, nombre: nuevoContent };
+    await Services.putTask(tareaActualizada, tarea.id);
+    setTareasM(TareasM.map(t => t.id === tarea.id ? tareaActualizada : t));
+    Swal.fire("¡Listo!", "Tarea actualizada correctamente", "success");
+  }
+};
 
 //-----------------------------------------------------------------------------------------------------------------
   return (
